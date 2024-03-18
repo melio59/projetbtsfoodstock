@@ -1,10 +1,11 @@
+
 import { useNavigation } from '@react-navigation/core'
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View, FlatList } from 'react-native'
 import { auth } from '../firebase'
 import { EleveCollection } from '../firestore'
 
-const HomeScreen = () => {
+const HomePageScreen = () => {
   const navigation = useNavigation()
   const [eleveData, setEleveData] = useState([]);
 
@@ -20,6 +21,7 @@ const HomeScreen = () => {
     };
     fetchData();
   }, []);
+
   const handleSignOut = () => {
     auth
       .signOut()
@@ -32,15 +34,17 @@ const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <Text>Email: {auth.currentUser?.email}</Text>
-      <TouchableOpacity
-        onPress={handleSignOut}
-        style={styles.button}
-      >
-        <Text style={styles.buttonText}>Sign out</Text>
-      </TouchableOpacity>
+      {auth.currentUser && ( 
+        <TouchableOpacity
+          onPress={handleSignOut}
+          style={styles.button}
+        >
+          <Text style={styles.buttonText}>Se déconnecter</Text>
+        </TouchableOpacity>
+      )}
       <FlatList
         data={eleveData}
-        renderItem={({item}) => <Text>Nom : {item.Nom} Prenom : {item.Prenom}</Text>}
+        renderItem={({ item }) => <Text>Nom : {item.Nom} Prenom : {item.Prenom}</Text>}
         keyExtractor={item => item.id}
       />
       {console.log('test')}
@@ -48,7 +52,7 @@ const HomeScreen = () => {
   )
 }
 
-export default HomeScreen
+export default HomePageScreen
 
 const styles = StyleSheet.create({
   container: {
@@ -56,8 +60,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-   button: {
-    backgroundColor: 'ADD8E6',
+  button: {
+    backgroundColor: '#ADD8E6',
     width: '60%',
     padding: 15,
     borderRadius: 10,
