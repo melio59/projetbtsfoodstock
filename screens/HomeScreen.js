@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, FlatList, Image } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, FlatList, ImageBackground } from 'react-native';
 import { auth } from '../firebase';
 import { useNavigation } from '@react-navigation/core';
 
@@ -21,7 +21,10 @@ const HomePageScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <ImageBackground
+      source={require('../assets/imgfood.png')} 
+      style={styles.container}
+    >
       <View style={styles.navbar}>
         <Text style={styles.logo}>Logo</Text>
         <View style={styles.navLinks}>
@@ -33,10 +36,6 @@ const HomePageScreen = () => {
         </View>
       </View>
       <View style={styles.content}>
-      <Image 
-  source={require('../assets/imgfood.png')} 
-  style={styles.image}
-/>
         <TouchableOpacity onPress={handleSignOut} style={styles.button}>
           <Text style={styles.buttonText}>Se déconnecter</Text>
         </TouchableOpacity>
@@ -47,7 +46,7 @@ const HomePageScreen = () => {
       <TouchableOpacity style={[styles.button, styles.commandButton]}>
         <Text style={styles.buttonText}>Passer une commande</Text>
       </TouchableOpacity>
-    </View>
+    </ImageBackground>
   )
 }
 
@@ -59,19 +58,22 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingTop: 20,
+    resizeMode: 'cover',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   navbar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
-    backgroundColor: '#f0f0f0',
+    backgroundColor: 'transparent',
     paddingVertical: 10,
     paddingHorizontal: 20,
   },
   logo: {
     fontSize: 20,
     fontWeight: 'bold',
+    color: 'white',
   },
   navLinks: {
     flexDirection: 'row',
@@ -79,15 +81,11 @@ const styles = StyleSheet.create({
   navLink: {
     marginLeft: 20,
     fontSize: 16,
+    color: 'white',
   },
   content: {
     alignItems: 'center',
     marginVertical: 20,
-  },
-  image: {
-    width: 200,
-    height: 200,
-    marginBottom: 20,
   },
   button: {
     backgroundColor: '#ADD8E6',
