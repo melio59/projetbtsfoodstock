@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/core'
 import React, { useEffect, useState } from 'react'
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground } from 'react-native'
 import { auth } from '../firebase'
+import ChangerMotDePasseScreen from './ChangerMotDePasseScreen'
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('')
@@ -25,7 +26,7 @@ const LoginScreen = () => {
       .then(userCredentials => {
         const user = userCredentials.user;
         console.log('Registered with:', user.email);
-        navigation.replace("Home"); 
+        navigation.replace("Home");
       })
       .catch(error => alert(error.message))
   }
@@ -36,14 +37,14 @@ const LoginScreen = () => {
       .then(userCredentials => {
         const user = userCredentials.user;
         console.log('Logged in with:', user.email);
-        navigation.replace("Home"); 
+        navigation.replace("Home");
       })
       .catch(error => alert(error.message))
   }
 
   return (
     <ImageBackground
-      source={require('../assets/imgfood.png')} 
+      source={require('../assets/imgfood.png')}
       style={styles.container}
     >
       <KeyboardAvoidingView
@@ -65,6 +66,16 @@ const LoginScreen = () => {
             secureTextEntry
           />
         </View>
+
+        <TouchableOpacity onPress={() => {
+          if (auth.currentUser) {
+            navigation.navigate("ChangerMotDePasse")
+          } else {
+            alert('Vous devez être connecté pour changer votre mot de passe')
+          }
+        }}>
+          <Text style={{ color: 'blue' }}>Mot de passe oublié ?</Text>
+        </TouchableOpacity>
 
         <View style={styles.buttonContainer}>
           <TouchableOpacity

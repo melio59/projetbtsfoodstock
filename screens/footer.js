@@ -1,25 +1,35 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, Image } from 'react-native';
 
 const Footer = () => {
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>VivaStock</Text>
+            
+            <Text style={styles.contact}>Contact: example@example.com</Text>
+            <Text style={styles.legal}>Legal information: Lorem ipsum dolor sit amet</Text>
         </View>
     );
-};
+}
 
-const styles = StyleSheet.create({
+const styles = {
     container: {
-        backgroundColor: 'lightgray',
+        backgroundColor: '#f2f2f2',
         padding: 10,
         alignItems: 'center',
-        justifyContent: 'center',
     },
-    text: {
+    logo: {
+        width: 50,
+        height: 50,
+        marginBottom: 10,
+    },
+    contact: {
         fontSize: 16,
-        fontWeight: 'bold',
+        marginBottom: 5,
     },
-});
+    legal: {
+        fontSize: 12,
+        color: 'gray',
+    },
+};
 
 export default Footer;

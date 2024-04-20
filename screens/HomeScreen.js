@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, FlatList, ImageBackground } from 'react-native';
 import { auth } from '../firebase';
 import { useNavigation } from '@react-navigation/core';
-
+import ChangerMotDePasseScreen from './ChangerMotDePasseScreen';
 
 const HomePageScreen = () => {
   const navigation = useNavigation();
@@ -17,7 +17,15 @@ const HomePageScreen = () => {
   }
 
   const handleStockagePage = () => {
-    navigation.navigate("Stockage"); 
+    navigation.navigate("test"); 
+  }
+
+  const handleStockagePage2 = () => {
+    navigation.navigate("Categorie"); 
+  }
+
+  const handleChangementMotDePasse = () => {
+    navigation.navigate("ChangerMotDePasse");
   }
 
   return (
@@ -42,6 +50,14 @@ const HomePageScreen = () => {
         <TouchableOpacity onPress={handleStockagePage} style={styles.button}>
           <Text style={styles.buttonText}>Voir le stockage</Text>
         </TouchableOpacity>
+        <TouchableOpacity onPress={handleStockagePage2} style={styles.button}>
+          <Text style={styles.buttonText}>Voir les catégories</Text>
+        </TouchableOpacity>
+        {auth.currentUser && (
+          <TouchableOpacity onPress={handleChangementMotDePasse} style={styles.button}>
+            <Text style={styles.buttonText}>Changer le mot de passe</Text>
+          </TouchableOpacity>
+        )}
       </View>
       <TouchableOpacity style={[styles.button, styles.commandButton]}>
         <Text style={styles.buttonText}>Passer une commande</Text>
@@ -102,6 +118,6 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'yellow',
     fontWeight: '700',
-    fontSize: 16,
+    fontSize: 13,
   },
 });
