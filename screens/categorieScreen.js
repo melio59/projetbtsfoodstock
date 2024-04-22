@@ -119,10 +119,10 @@ const CategorieScreen = () => {
         keyExtractor={(item, index) => item.id ? item.id.toString() : Date.now().toString() + index.toString()}
         renderItem={({ item }) => (
           <View style={styles.tableRow}>
-            <Text style={styles.tableCell}>{item.id}</Text>
-            <Text style={styles.tableCell}>{item.nomCategorie}</Text>
-            <Button title="Modifier" onPress={() => editCategorie(item.id, item.nomCategorie)} />
-            <Button title="Supprimer" onPress={() => deleteCategorie(item.id)} color="red" />
+            <Text style={styles.tableCell}>ID:{item.id}</Text>
+            <Text style={styles.tableCell}>Nom:{item.nomCategorie}</Text>
+            <Button title="Modifier" onPress={() => editCategorie(item.id, item.nomCategorie)} color="#ADD1E6" />
+            <Button title="Supprimer" onPress={() => deleteCategorie(item.id)} color="#ADD1E6" />
           </View>
         )}
       />
@@ -134,6 +134,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    
   },
   input: {
     height: 40,

@@ -82,13 +82,13 @@ const LoginScreen = () => {
             onPress={handleLogin}
             style={styles.button}
           >
-            <Text style={styles.buttonText}>Login</Text>
+            <Text style={styles.buttonText}>Se connecter</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={handleSignUp}
             style={[styles.button, styles.buttonOutline]}
           >
-            <Text style={styles.buttonOutlineText}>Register</Text>
+            <Text style={styles.buttonOutlineText}>S'inscrire</Text>
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>

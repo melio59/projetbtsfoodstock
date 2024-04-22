@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, TextInput, TouchableOpacity, Text } from 'react-native'
+import { View, TextInput, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { auth } from '../firebase'
 
 const ChangerMotDePasseScreen = () => {
@@ -30,30 +30,55 @@ const ChangerMotDePasseScreen = () => {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       <TextInput
+        style={styles.input}
         placeholder="Ancien mot de passe"
         value={ancienMotDePasse}
         onChangeText={text => setAncienMotDePasse(text)}
         secureTextEntry
       />
       <TextInput
+        style={styles.input}
         placeholder="Nouveau mot de passe"
         value={nouveauMotDePasse}
         onChangeText={text => setNouveauMotDePasse(text)}
         secureTextEntry
       />
       <TextInput
+        style={styles.input}
         placeholder="Confirmer le nouveau mot de passe"
         value={confirmationNouveauMotDePasse}
         onChangeText={text => setConfirmationNouveauMotDePasse(text)}
         secureTextEntry
       />
-      <TouchableOpacity onPress={handleChangementMotDePasse}>
-        <Text>Changer le mot de passe</Text>
+      <TouchableOpacity style={styles.button} onPress={handleChangementMotDePasse}>
+        <Text style={styles.buttonText}>Changer le mot de passe</Text>
       </TouchableOpacity>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 20,
+    paddingHorizontal: 10,
+  },
+  button: {
+    backgroundColor: '#ADD1E6',
+    padding: 10,
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: 'white',
+    textAlign: 'center',
+  },
+});
 
 export default ChangerMotDePasseScreen

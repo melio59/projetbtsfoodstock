@@ -41,7 +41,7 @@ const ArticleScreen = () => {
           nom: nomArticle,
           description: description,
           images: images,
-          date_peremp: datePeremp, // Utilisez directement la valeur de datePeremp au lieu de la convertir en chaîne de caractères
+          date_peremp: datePeremp, 
           prix: prix,
           id_categorie: idCategorie,
           stock: stock,
@@ -113,7 +113,7 @@ const ArticleScreen = () => {
       console.error('Erreur:', error);
     }
   };
-  
+
   const handleEdit = (article) => {
     setNomArticle(article.nom);
     setDescription(article.description);
@@ -124,7 +124,6 @@ const ArticleScreen = () => {
     setStock(article.stock);
     setEditingId(article.id);
   };
-  
 
   return (
     <View style={styles.container}>
@@ -179,17 +178,17 @@ const ArticleScreen = () => {
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item, index }) => (
           <View style={styles.tableRow} key={index}>
-            <Text style={styles.tableCell}>{item.id}</Text>
-            <Text style={styles.tableCell}>{item.nom}</Text>
-            <Text style={styles.tableCell}>{item.description}</Text>
+            <Text style={styles.tableCell}>id: {item.id}</Text>
+            <Text style={styles.tableCell}> Nom:{item.nom}</Text>
+            <Text style={styles.tableCell}>Description:{item.description}</Text>
             <Text style={styles.tableCell}>{item.images}</Text>
-            <Text style={styles.tableCell}>{item.datePeremp}</Text>
-            <Text style={styles.tableCell}>{item.prix}</Text>
+            <Text style={styles.tableCell}>Date de péremption{item.datePeremp}</Text>
+            <Text style={styles.tableCell}>Prix unitaire:{item.prix}</Text>
             <Text style={styles.tableCell}>{item.idCategorie}</Text>
-            <Text style={styles.tableCell}>{item.stock}</Text>
+            <Text style={styles.tableCell}>Stock:{item.stock}</Text>
             <View style={styles.buttonContainer}>
-              <Button title="Supprimer" onPress={() => deleteArticle(item.id)} color="red" />
-              <Button title="Modifier" onPress={() => handleEdit(item)} color="orange" />
+              <Button title="Supprimer" onPress={() => deleteArticle(item.id)} color="#ADD1E6" />
+              <Button title="Modifier" onPress={() => handleEdit(item)} color="#ADD1E6" />
             </View>
           </View>
         )}
