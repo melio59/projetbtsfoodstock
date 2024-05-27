@@ -118,11 +118,16 @@ const ArticleScreen = () => {
     setNomArticle(article.nom);
     setDescription(article.description);
     setImages(article.images);
-    setDatePeremp(article.datePeremp);
+    setDatePeremp(formatDate(article.datePeremp));
     setPrix(article.prix);
     setIdCategorie(article.idCategorie);
     setStock(article.stock);
     setEditingId(article.id);
+  };
+
+  const formatDate = (date) => {
+    const formattedDate = new Date(date).toISOString().split('T')[0];
+    return formattedDate;
   };
 
   return (
@@ -179,13 +184,13 @@ const ArticleScreen = () => {
         renderItem={({ item, index }) => (
           <View style={styles.tableRow} key={index}>
             <Text style={styles.tableCell}>id: {item.id}</Text>
-            <Text style={styles.tableCell}> Nom:{item.nom}</Text>
-            <Text style={styles.tableCell}>Description:{item.description}</Text>
+            <Text style={styles.tableCell}> Nom: {item.nom}</Text>
+            <Text style={styles.tableCell}>Description: {item.description}</Text>
             <Text style={styles.tableCell}>{item.images}</Text>
-            <Text style={styles.tableCell}>Date de péremption{item.datePeremp}</Text>
-            <Text style={styles.tableCell}>Prix unitaire:{item.prix}</Text>
+            <Text style={styles.tableCell}>Date de péremption: {formatDate(item.datePeremp)}</Text>
+            <Text style={styles.tableCell}>Prix unitaire: {item.prix}€</Text>
             <Text style={styles.tableCell}>{item.idCategorie}</Text>
-            <Text style={styles.tableCell}>Stock:{item.stock}</Text>
+            <Text style={styles.tableCell}>Stock: {item.stock}</Text>
             <View style={styles.buttonContainer}>
               <Button title="Supprimer" onPress={() => deleteArticle(item.id)} color="#ADD1E6" />
               <Button title="Modifier" onPress={() => handleEdit(item)} color="#ADD1E6" />

@@ -33,15 +33,15 @@ const CategorieScreen = () => {
     const BASEURL = 'http://127.0.0.1:8000/';
   
     try {
-      const response = await fetch(BASEURL + 'categorie', {
+      await fetch(BASEURL + 'categorie', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          nom_categorie: nomCategorie, // Utiliser le bon nom de champ ici
+          nom_categorie: nomCategorie, 
         }),
-      });
+      }).then(response => response.json()).then(data => console.log(data));
   
       if (response.ok) {
         const json = await response.json();
@@ -119,8 +119,8 @@ const CategorieScreen = () => {
         keyExtractor={(item, index) => item.id ? item.id.toString() : Date.now().toString() + index.toString()}
         renderItem={({ item }) => (
           <View style={styles.tableRow}>
-            <Text style={styles.tableCell}>ID:{item.id}</Text>
-            <Text style={styles.tableCell}>Nom:{item.nomCategorie}</Text>
+            <Text style={styles.tableCell}>ID: {item.id}</Text>
+            <Text style={styles.tableCell}>Nom: {item.nomCategorie}</Text>
             <Button title="Modifier" onPress={() => editCategorie(item.id, item.nomCategorie)} color="#ADD1E6" />
             <Button title="Supprimer" onPress={() => deleteCategorie(item.id)} color="#ADD1E6" />
           </View>

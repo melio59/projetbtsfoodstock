@@ -37,7 +37,7 @@ const HomePageScreen = () => {
       style={styles.container}
     >
       <View style={styles.navbar}>
-        <Text style={styles.logo}>Logo</Text>
+        
         <View style={styles.navLinks}>
           <Text style={styles.navLink}>Accueil</Text>
           <Text style={styles.navLink}>Stockage</Text>

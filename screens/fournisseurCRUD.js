@@ -6,7 +6,6 @@ const FournisseurScreen = () => {
   const [nomFournisseur, setNomFournisseur] = useState('');
   const [numeroTelephone, setNumeroTelephone] = useState('');
   const [adresse, setAdresse] = useState('');
-  const [idFournisseur, setIdFournisseur] = useState('');
   const [editingFournisseur, setEditingFournisseur] = useState(null);
 
   useEffect(() => {
@@ -46,7 +45,6 @@ const FournisseurScreen = () => {
       console.log("Tentative d'ajout d'un fournisseur...");
 
       const newFournisseur = {
-        id: idFournisseur,
         nomFournisseur,
         numeroTelephone,
         adresse,
@@ -60,15 +58,20 @@ const FournisseurScreen = () => {
         body: JSON.stringify(newFournisseur),
       });
 
-      const json = await response.json();
-
-      console.log("Données reçues du serveur après l'ajout :", json);
-
-      setFournisseurs([...fournisseurs, newFournisseur]);
-      setIdFournisseur('');
-      setNomFournisseur('');
-      setNumeroTelephone('');
-      setAdresse('');
+      if (response.ok) {
+        const json = await response.json();
+        console.log("Données reçues du serveur après l'ajout :", json);
+        
+        
+        setFournisseurs([...fournisseurs, json]);
+        
+        
+        setNomFournisseur('');
+        setNumeroTelephone('');
+        setAdresse('');
+      } else {
+        console.error('Erreur lors de l\'ajout du fournisseur:', response.statusText);
+      }
     } catch (error) {
       console.error('Erreur lors de l\'ajout du fournisseur:', error);
     }
@@ -108,12 +111,6 @@ const FournisseurScreen = () => {
       <View style={styles.form}>
         <TextInput
           style={styles.input}
-          placeholder="ID du fournisseur"
-          value={idFournisseur}
-          onChangeText={setIdFournisseur}
-        />
-        <TextInput
-          style={styles.input}
           placeholder="Nom du fournisseur"
           value={nomFournisseur}
           onChangeText={setNomFournisseur}
@@ -141,9 +138,8 @@ const FournisseurScreen = () => {
         keyExtractor={(item) => item.id.toString()} 
         renderItem={({ item }) => (
           <View style={styles.tableRow}>
-             <Text style={styles.tableCell}>ID: {item.id}</Text>
-            <Text style={styles.tableCell}>Numéro de téléphone: {item.numeroTelephone}</Text>
             <Text style={styles.tableCell}>Nom du fournisseur: {item.nomFournisseur}</Text>
+            <Text style={styles.tableCell}>Numéro de téléphone: {item.numeroTelephone}</Text>
             <Text style={styles.tableCell}>Adresse: {item.adresse}</Text>
             <Button
               title="Modifier"

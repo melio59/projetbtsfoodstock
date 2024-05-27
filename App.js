@@ -20,7 +20,7 @@ export default function App() {
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Stockage" component={StockagePage} />
+        
         <Stack.Screen name="Footer" component={Footer} />
         <Stack.Screen name="Categorie" component={categorieScreen} />
         <Stack.Screen name="ChangerMotDePasse" component={ChangerMotDePasseScreen} />
