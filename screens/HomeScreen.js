@@ -27,6 +27,10 @@ const HomePageScreen = () => {
     navigation.navigate("Fournisseur"); 
   }
 
+  const handleStockagePage4 = () => {
+    navigation.navigate("Commande"); 
+  }
+
   const handleChangementMotDePasse = () => {
     navigation.navigate("ChangerMotDePasse");
   }
@@ -58,6 +62,9 @@ const HomePageScreen = () => {
         </TouchableOpacity>
         <TouchableOpacity onPress={handleStockagePage3} style={styles.button}>
           <Text style={styles.buttonText}>Voir les fournisseurs</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleStockagePage4} style={styles.button}>
+          <Text style={styles.buttonText}>Voir les commandes</Text>
         </TouchableOpacity>
         {auth.currentUser && (
           <TouchableOpacity onPress={handleChangementMotDePasse} style={styles.button}>

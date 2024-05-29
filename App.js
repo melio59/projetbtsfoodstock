@@ -9,6 +9,7 @@ import categorieScreen from './screens/categorieScreen';
 import ChangerMotDePasseScreen from './screens/ChangerMotDePasseScreen';
 import FournisseurScreen from './screens/fournisseurCRUD';
 import ArticleScreen from './screens/ArticleCRUD';
+import CommandeScreen from './screens/commandeCRUD';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,7 @@ export default function App() {
         <Stack.Screen name="ChangerMotDePasse" component={ChangerMotDePasseScreen} />
         <Stack.Screen name="Article" component={ArticleScreen} />
         <Stack.Screen name="Fournisseur" component={FournisseurScreen} />
+        <Stack.Screen name="Commande" component={CommandeScreen} />
 
 
         
